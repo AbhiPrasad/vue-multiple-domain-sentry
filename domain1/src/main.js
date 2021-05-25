@@ -6,12 +6,12 @@ import { Integrations } from "@sentry/tracing";
 
 Vue.config.productionTip = false;
 
-console.log(process.env.VUE_APP_SENTRY_DSN);
-
 Sentry.init({
   debug: true,
   dsn: process.env.VUE_APP_SENTRY_DSN,
-  integrations: [new Integrations.BrowserTracing()],
+  integrations: [new Integrations.BrowserTracing({
+      startTransactionOnPageLoad: false,
+  })],
 
   // We recommend adjusting this value in production, or using tracesSampler
   // for finer control
